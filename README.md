@@ -100,6 +100,8 @@ Note that sometimes uv commands may raise Permission Denied errors. In those cas
 ### Format, Lint, Testing, Type Checking
 
 `uv tool install black flake8 pytest mypy`
+`uv tool uninstall black flake8 pytest mypy`
+`uv tool upgrade ruff`
 
 Some Python packages are exposed as command-line tools like `black` for code formatting, `flake8` for linting, `pytest` for testing, `mypy` for type checking, etc. UV provides two special interfaces to manage these packages:
 
@@ -125,12 +127,37 @@ uv init .
 uv pip install -r requirements.txt
 ```
 
+## Virtual Environment
+
+Create a `.venv` folder for virtual environment.
+
+`uv venv --python 3.13.0`
+
+## uv commands
+
+```bash
+# show current project in a tree
+uv tree
+
+# sync/install the dependencies with the virtual environment. Update the project's environment
+uv sync
+
+# list where UV tool is being installed
+uv tool dir
+
+# update the shell in .zshrc and restart shell to apply changes
+uv tool update-shell
+
+# publish a project
+uv publish --password
+```
+
 ## Replacing common pip/virtualenv commands
 
 After migration, you can safely remove your old virtualenv directory and start using UV's virtual environment management. The transition is typically seamless, and you can always fall back to pip commands through UV's pip compatibility layer if needed.
 
 | UV equivalent | pip/virtualenv command  |
-|---|---|---|---|---|
+|---|---|
 | uv venv  | python -m venv .venv  |
 | uv add package  | python install package  |
 | uv pip install -r requirements.txt  | pip install -r requirements.txt  |
