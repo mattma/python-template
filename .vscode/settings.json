@@ -18,6 +18,7 @@
   "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
   "python.testing.autoTestDiscoverOnSaveEnabled": true,
   "files.exclude": {
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/.ipynb_checkpoints": true
   }
 }

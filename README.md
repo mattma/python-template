@@ -6,6 +6,18 @@
 - Efficient dependency resolution and lock file support
 - Low memory footprint and resource usage
 
+## Getting Start
+
+```bash
+# By default, jupyter lab will start the server at http://localhost:8888/lab.
+uv run --with jupyter jupyter lab --notebook-dir="notebook"
+
+uv run src/main.py
+
+# Testing
+uvx pytest
+```
+
 ## Manage system python version
 
 This command installs Python 3.13 and, with the --default flag, creates symlinks named python and python3 in your uv-managed binary directory (typically `~/.local/bin`). If you add that directory to the beginning of your PATH, it will override the system Python when you type python globally.
@@ -126,6 +138,22 @@ uv init .
 # Finally, install the dependencies from your requirements file:
 uv pip install -r requirements.txt
 ```
+
+## [Jupyter Notebook](https://docs.astral.sh/uv/guides/integration/jupyter/)
+
+```bash
+uv run --with jupyter jupyter lab --notebook-dir="notebook"
+
+# Install packages from within the notebook, we recommend creating a dedicated kernel for your project. Kernels enable the Jupyter server to run in one environment, with individual notebooks running in their own, separate environments.
+# To create a kernel, you'll need to install `ipykernel` as a development dependency:
+uv add --dev ipykernel
+
+# Then, create the kernel for project with
+uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=project
+# Then, start the server
+uv run --with jupyter jupyter lab
+```
+
 
 ## Virtual Environment
 
